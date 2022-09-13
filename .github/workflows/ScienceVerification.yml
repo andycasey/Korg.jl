@@ -86,21 +86,23 @@ jobs:
         # then it may have new data/methods, etc. Then we should use
         # *this* repository to install the package, instead of getting
         # it from the Julia repository.
-        repository: andycasey/Korg.jl
-
+        # And we should be even more specific if this action is being initiated on
+        # a branch other than master!! # TODO
+        repository: ${{ github.action_repository }}
+        
     - name: Install Korg
       run: |
         julia -e 'using Pkg; Pkg.add("Korg")'
     
     - name: Sanity check
       run: |
-        echo ${{ github.host-workspace }}
-        ls ${{ github.host-workspace }}/test/
-        ls ${{ github.host-workspace }}/test/ScienceVerification/
+        echo ${{ github.workspace }}
+        ls ${{ github.workspace }}/test/
+        ls ${{ github.workspace }}/test/ScienceVerification/
         
     - name: Run grok on Sol
       run: |
-        cd ${{ github.host-workspace }}/test/ScienceVerification/
+        cd ${{ github.workspace }}/test/ScienceVerification/
         grok Sol-3660-3680.yml
 
     - name: Summary
