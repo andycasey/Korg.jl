@@ -24,6 +24,16 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Checkout grok
+      uses: actions/checkout@v3
+      with: 
+        repository: andycasey/grok
+      
+    - name: Install grok
+      run: |
+        pip install -r requirements.txt
+        python setup.py install
+
     - name: Install GFortran Linux
       if: contains(matrix.os, 'ubuntu')
       run: |
@@ -77,16 +87,6 @@ jobs:
     - name: Install Korg
       run: |
         julia -e 'using Pkg; Pkg.add("Korg")'
-
-    - name: Checkout grok
-      uses: actions/checkout@v3
-      with: 
-        repository: andycasey/grok
-      
-    - name: Install grok
-      run: |
-        pip install -r requirements.txt
-        python setup.py install
     
     - name: ls here
       run: |
