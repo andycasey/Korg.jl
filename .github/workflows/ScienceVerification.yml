@@ -90,8 +90,8 @@ jobs:
     
     - name: ls here
       run: |
-        ls .github/workflows/
-
+        ls /github/workspace/
+        
     - name: Run grok on Sol
       run: |
         cd /github/workspace/.github/workflows/experiments/
