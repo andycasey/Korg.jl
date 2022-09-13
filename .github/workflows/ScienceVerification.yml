@@ -86,7 +86,7 @@ jobs:
         # then it may have new data/methods, etc. Then we should use
         # *this* repository to install the package, instead of getting
         # it from the Julia repository.
-        repository: $GITHUB_ACTION_REPOSITORY
+        repository: andycasey/Korg.jl
 
     - name: Install Korg
       run: |
