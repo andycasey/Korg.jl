@@ -34,44 +34,44 @@ jobs:
         pip install -r requirements.txt
         python setup.py install
 
-    - name: Install GFortran Linux
-      if: contains(matrix.os, 'ubuntu')
-      run: |
-        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update
-        sudo apt-get install -y gcc-${GCC_V} gfortran-${GCC_V}
-        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_V} 100 \
-        --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${GCC_V} \
-        --slave /usr/bingcov gcov /usr/bin/gcov-${GCC_V}
-
-    - name: Install GFortran macOS
-      if: contains(matrix.os, 'macos')
-      run: brew install gcc@${GCC_V} || brew upgrade gcc@${GCC_V} || true
-
-    - name: Checkout Turbospectrum
-      uses: actions/checkout@v3
-      with:
-        repository: bertrandplez/Turbospectrum2019
-    
-    - name: Compile Turbospectrum
-      run: |
-        pwd
-        cd exec-gf-v19.1
-        make
-        ./bsyn_lu
-
-
-    - name: Checkout MOOGSILENT
-      uses: actions/checkout@v3
-      with: 
-        repository: andycasey/moog17scat
-        
-    - name: Compile MOOGSILENT
-      run: |
-        pwd
-        ls
-        make -f Makefile.gh
-
+#    - name: Install GFortran Linux
+#      if: contains(matrix.os, 'ubuntu')
+#      run: |
+#        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+#        sudo apt-get update
+#        sudo apt-get install -y gcc-${GCC_V} gfortran-${GCC_V}
+#        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_V} 100 \
+#        --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${GCC_V} \
+#        --slave /usr/bingcov gcov /usr/bin/gcov-${GCC_V}
+#
+#    - name: Install GFortran macOS
+#      if: contains(matrix.os, 'macos')
+#      run: brew install gcc@${GCC_V} || brew upgrade gcc@${GCC_V} || true
+#
+#    - name: Checkout Turbospectrum
+#      uses: actions/checkout@v3
+#      with:
+#        repository: bertrandplez/Turbospectrum2019
+#    
+#    - name: Compile Turbospectrum
+#      run: |
+#        pwd
+#        cd exec-gf-v19.1
+#        make
+#        ./bsyn_lu
+#
+#
+#    - name: Checkout MOOGSILENT
+#      uses: actions/checkout@v3
+#      with: 
+#        repository: andycasey/moog17scat
+#        
+#    - name: Compile MOOGSILENT
+#      run: |
+#        pwd
+#        ls
+#        make -f Makefile.gh
+#
     - name: Set up Julia ${{ matrix.julia-version }}
       uses: julia-actions/setup-julia@v1
       with:
@@ -88,7 +88,8 @@ jobs:
         # it from the Julia repository.
         # And we should be even more specific if this action is being initiated on
         # a branch other than master!! # TODO
-        repository: ${{ github.action_repository }}
+        # TODO: ${{ github.action_repository }} does not work!
+        repository: andycasey/Korg.jl
         
     - name: Install Korg
       run: |
