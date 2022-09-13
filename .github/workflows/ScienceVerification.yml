@@ -100,7 +100,7 @@ jobs:
         
     - name: Run grok on Sol
       run: |
-        cd ${{ github.workspace }}/.github/workflows/experiments/
+        cd ${{ github.workspace }}/test/ScienceVerification/
         grok Sol-3660-3680.yml
 
     - name: Summary
