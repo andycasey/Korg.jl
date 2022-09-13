@@ -90,11 +90,12 @@ jobs:
     
     - name: ls here
       run: |
-        ls /github/workspace/
+        echo ${{ github.workspace }}
+        ls ${{ github.workspace }}
         
     - name: Run grok on Sol
       run: |
-        cd /github/workspace/.github/workflows/experiments/
+        cd ${{ github.workspace }}/.github/workflows/experiments/
         grok Sol-3660-3680.yml
 
     - name: Summary
