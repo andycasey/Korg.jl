@@ -80,7 +80,7 @@ jobs:
         show-versioninfo: false
 
     - name: whaa
-      runs: |
+      run: |
         echo ${{ github.repository }}
 
     - name: Checkout Korg
