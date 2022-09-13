@@ -1,0 +1,38 @@
+name: Sol
+photosphere: data/photospheres/marcs_mod/sun.mod
+transitions:
+  paths: 
+    - data/transitions/all-3660-3680.vald
+# strong_paths
+wavelengths: # vacuum
+  min: 3600
+  max: 3680
+  step: 0.01
+spectral_synthesis:
+  korg:
+    hydrogen_lines: true
+  turbospectrum:
+    skip_irrelevant_transitions: true
+    update_missing_data: true
+    photosphere_format: marcs
+    hydrogen_lines: true
+    restrict_to_keep_on_reasons:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+  moog:
+    window: 2
+    max_transitions: 10000
+    max_chunks: 2
+    restrict_to_keep_on_reasons:
+      - 0
+      - 1
+      - 2
+    restrict_to_strongest_transitions:
+      - [Ti, O]
+
+observations:
+  paths:
+    - data/ATLAS.Sun_47000.fits

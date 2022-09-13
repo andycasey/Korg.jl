@@ -78,6 +78,23 @@ jobs:
       run: |
         julia -e 'using Pkg; Pkg.add("Korg")'
 
+    - name: Checkout grok
+      uses: actions/checkout@v3
+      with: 
+        repository: andycasey/grok
+      
+    - name: Install grok
+      run: |
+        python setup.py install
+    
+    - name: ls here
+      run: |
+        ls .github/workflows/
+
+    - name: Run grok on Sol
+      run: |
+        grok .github/workflows/Sol-3660-3680.yml
+
     - name: Summary
       run: |
         echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
