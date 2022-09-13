@@ -1,8 +1,8 @@
 name: Sol
-photosphere: data/photospheres/marcs_mod/sun.mod
+photosphere: photospheres/marcs_mod/sun.mod
 transitions:
   paths: 
-    - data/transitions/all-3660-3680.vald
+    - transitions/all-3660-3680.vald
 # strong_paths
 wavelengths: # vacuum
   min: 3600
@@ -32,7 +32,3 @@ spectral_synthesis:
       - 2
     restrict_to_strongest_transitions:
       - [Ti, O]
-
-observations:
-  paths:
-    - data/ATLAS.Sun_47000.fits

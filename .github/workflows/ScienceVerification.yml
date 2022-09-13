@@ -1,4 +1,4 @@
-name: science
+name: ScienceVerification
 on: push
 
 jobs:
@@ -51,12 +51,12 @@ jobs:
         ./bsyn_lu
 
 
-    - name: Checkout MOOG
+    - name: Checkout MOOGSILENT
       uses: actions/checkout@v3
       with: 
         repository: andycasey/moog17scat
         
-    - name: Compile MOOG
+    - name: Compile MOOGSILENT
       run: |
         pwd
         ls
@@ -85,6 +85,7 @@ jobs:
       
     - name: Install grok
       run: |
+        pip install -r requirements.txt
         python setup.py install
     
     - name: ls here
@@ -93,7 +94,8 @@ jobs:
 
     - name: Run grok on Sol
       run: |
-        grok .github/workflows/Sol-3660-3680.yml
+        cd /github/workspace/.github/workflows/experiments/
+        grok Sol-3660-3680.yml
 
     - name: Summary
       run: |
