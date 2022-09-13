@@ -82,22 +82,21 @@ jobs:
     - name: Checkout Korg
       uses: actions/checkout@v3
       with:
-        repository: ajwheeler/Korg.jl
+        # We checkout *this* repository because if it's a pull request
+        # then it may have new data/methods, etc. Then we should use
+        # *this* repository to install the package, instead of getting
+        # it from the Julia repository.
+        repository: $GITHUB_ACTION_REPOSITORY
 
     - name: Install Korg
       run: |
         julia -e 'using Pkg; Pkg.add("Korg")'
     
-    - name: ls host workspace
+    - name: Sanity check
       run: |
         echo ${{ github.host-workspace }}
-        ls ${{ github.host-workspace }}
-
-    - name: ls here
-      run: |
-        echo ${{ github.workspace }}
-        ls ${{ github.workspace }}/test/
-        ls ${{ github.workspace }}/test/ScienceVerification/
+        ls ${{ github.host-workspace }}/test/
+        ls ${{ github.host-workspace }}/test/ScienceVerification/
         
     - name: Run grok on Sol
       run: |
