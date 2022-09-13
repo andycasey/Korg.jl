@@ -79,6 +79,10 @@ jobs:
         arch: ${{ matrix.arch }}
         show-versioninfo: false
 
+    - name: whaa
+      runs: |
+        echo ${{ github.repository }}
+
     - name: Checkout Korg
       uses: actions/checkout@v3
       with:
@@ -90,7 +94,7 @@ jobs:
         # a branch other than master!! # TODO
         # TODO: ${{ github.action_repository }} does not work!
         repository: andycasey/Korg.jl
-        
+    
     - name: Install Korg
       run: |
         julia -e 'using Pkg; Pkg.add("Korg")'
