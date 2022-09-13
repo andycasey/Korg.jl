@@ -88,6 +88,11 @@ jobs:
       run: |
         julia -e 'using Pkg; Pkg.add("Korg")'
     
+    - name: ls host workspace
+      run: |
+        echo ${{ github.host-workspace }}
+        ls ${{ github.host-workspace }}
+
     - name: ls here
       run: |
         echo ${{ github.workspace }}
