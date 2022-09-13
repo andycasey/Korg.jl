@@ -103,7 +103,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: Sol-3660-3680-korg-rectified
-        path: Sol-3660-3680-korg-rectified.png
+        path: ${{ github.workspace }}/test/ScienceVerification/Sol-3660-3680-korg-rectified.png
 
     - name: Summary
       run: |
