@@ -5,7 +5,7 @@ transitions:
     - transitions/all-3660-3680.vald
 # strong_paths
 wavelengths: # vacuum
-  min: 3600
+  min: 3660
   max: 3680
   step: 0.01
 spectral_synthesis:

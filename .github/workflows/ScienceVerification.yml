@@ -79,10 +79,6 @@ jobs:
         arch: ${{ matrix.arch }}
         show-versioninfo: false
 
-    - name: whaa
-      run: |
-        echo ${{ github.repository }}
-
     - name: Checkout Korg
       uses: actions/checkout@v3
       with:
@@ -92,23 +88,22 @@ jobs:
         # it from the Julia repository.
         # And we should be even more specific if this action is being initiated on
         # a branch other than master!! # TODO
-        # TODO: ${{ github.action_repository }} does not work!
-        repository: andycasey/Korg.jl
+        repository: ${{ github.repository }}
     
     - name: Install Korg
       run: |
         julia -e 'using Pkg; Pkg.add("Korg")'
-    
-    - name: Sanity check
-      run: |
-        echo ${{ github.workspace }}
-        ls ${{ github.workspace }}/test/
-        ls ${{ github.workspace }}/test/ScienceVerification/
         
     - name: Run grok on Sol
       run: |
         cd ${{ github.workspace }}/test/ScienceVerification/
-        grok Sol-3660-3680.yml
+        grok -v Sol-3660-3680.yml
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: Sol-3660-3680-korg-rectified
+        path: Sol-3660-3680-korg-rectified.png
 
     - name: Summary
       run: |
